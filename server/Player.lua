@@ -17,6 +17,12 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
         self.teamrang = Config.Team[ranglevel].label
     end
 
+    self.setJob = function(job, grade)
+        self.job = job
+        if grade then self.grade = grade end
+        --TriggerClientEvent("BrainLUA:UpdateJob", -1, self.id, self.job, self.grade)
+    end
+
     self.getName = function()
         return self.name
     end
@@ -26,3 +32,4 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
     end
 
 end
+
