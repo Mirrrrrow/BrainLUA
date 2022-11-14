@@ -33,6 +33,31 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
         --TriggerClientEvent("BrainLUA:UpdateJob", -1, self.id, self.job, self.grade)
     end
 
+    self.getJobName = function()
+        return self.job
+    end
+
+    self.getJobLabel = function()
+        return Config.Jobs.jobs[self.job].label
+    end
+
+    self.getGrade = function()
+        return self.grade
+    end
+
+    self.setGrade = function(grade)
+        if !type(grade) == "number" then
+            Debug("Grade must be a number!")
+            return
+        end
+        if !Config.Jobs.jobs[self.job].grades[grade] then
+            Debug("Grade " .. grade .. " does not exist!")
+            return
+        end
+        self.grade = grade
+        --TriggerClientEvent("BrainLUA:UpdateJob", -1, self.id, self.job, self.grade)
+    end
+
     self.getName = function()
         return self.name
     end
