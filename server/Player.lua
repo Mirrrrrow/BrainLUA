@@ -18,8 +18,18 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
     end
 
     self.setJob = function(job, grade)
+        if !Config.Jobs.jobs[job] then
+            Debug("Job " .. job .. " does not exist!")
+            return
+        end
+        if grade then
+            if !Config.Jobs.jobs[job].grades[grade] then
+                Debug("Grade " .. grade .. " does not exist!")
+                return
+            end
+            self.grade = grade
+        end
         self.job = job
-        if grade then self.grade = grade end
         --TriggerClientEvent("BrainLUA:UpdateJob", -1, self.id, self.job, self.grade)
     end
 
