@@ -44,8 +44,8 @@ function LoadDefaultSkin()
 end
 
 
-RegisterNetEvent("brain:spawnPlayerLocation")
-AddEventHandler("brain:spawnPlayerLocation", function()
+RegisterNetEvent("BrainLUA:spawnPlayerLocation")
+AddEventHandler("BrainLUA:spawnPlayerLocation", function()
     SetEntityCoords(PlayerPedId(), Config.SpawnPosition.x, Config.SpawnPosition.y, Config.SpawnPosition.z)
     SetEntityHeading(PlayerPedId(), Config.SpawnPosition.heading)
     SetGameplayCamRelativeHeading(Config.SpawnPosition.heading)

@@ -52,7 +52,7 @@ function CreateCharacter(playerIdentifier, playerId, playerName)
             
             LoadPlayer(playerName, playerData["coords"], playerIdentifier, playerId, 0, playerData["personalId"], playerData["accounts"], playerData["job"], playerData["grade"], playerData["inventory"], playerData["loadout"])
             Debug('A Character for ' ..playerName.. ' with the ID '..ids[1].. ' got created!')
-            TriggerClientEvent('brain:spawnPlayerLocation', playerId)
+            TriggerClientEvent('BrainLUA:spawnPlayerLocation', playerId)
         end)
     end)
 

@@ -30,7 +30,7 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             self.grade = grade
         end
         self.job = job
-        --TriggerClientEvent("BrainLUA:UpdateJob", -1, self.id, self.job, self.grade)
+        TriggerClientEvent("BrainLUA:UpdateJob", self.id, self.job, self.grade)
     end
 
     self.getJobName = function()
@@ -55,7 +55,7 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             return
         end
         self.grade = grade
-        --TriggerClientEvent("BrainLUA:UpdateJob", -1, self.id, self.job, self.grade)
+        TriggerClientEvent("BrainLUA:UpdateJob", self.id, self.job, self.grade)
     end
 
     self.getName = function()
@@ -66,5 +66,6 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
         return self.identifier
     end
 
-end
+    TriggerClientEvent("BrainLUA:PlayerLoaded", self.id, self)
 
+end
