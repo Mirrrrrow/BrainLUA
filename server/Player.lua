@@ -18,6 +18,46 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
         self.teamrang = Config.Team[ranglevel].label
     end
 
+    self.getAccounts = function()
+        return self.accounts
+    end
+
+    self.getAccountMoney = function(account)
+        if !account then
+            Debug("Account wasnt given!")
+            return
+        end
+        if !self.accounts[account] then
+            Debug("Account is not registrated!")
+            return
+        end
+        return self.accounts[account].money
+    end
+    
+    self.getAccount = function(account)
+        if !account then
+            Debug("Account wasnt given!")
+            return
+        end
+        if !self.accounts[account] then
+            Debug("Account is not registrated!")
+            return
+        end
+        return self.accounts[account]
+    end
+
+    self.updateOptionalData = function(index,value)
+        if !index or !value then
+            Debug("Index, Value wasnt given!")
+            return
+        end
+        if !self.optionalData[index] then
+            Debug(index.. " isnt valuable!")
+            return
+        end
+        self.optionalData[index] = value
+    end
+
     self.addOptionalData = function(index,value)
         if !index or !value then
             Debug("Index, Value wasnt given!")
