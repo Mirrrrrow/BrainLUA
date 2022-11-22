@@ -2,6 +2,7 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
     self = {}
 
     self.name = playerName
+    self.optionalData = {}
     self.coords = playerCoords
     self.identifier = playerIdentifier
     self.job = job
@@ -15,6 +16,45 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
     self.teamrang = "Spieler"
     if self.teamlevel ~= 0 then
         self.teamrang = Config.Team[ranglevel].label
+    end
+
+    self.addOptionalData = function(index,value)
+        if !index or !value then
+            Debug("Index, Value wasnt given!")
+            return
+        end
+        table.insert(self.optionalData,index, value )
+    end
+
+    self.getOptionalData = function(index)
+        if !index then
+            Debug("Index wasnt given!")
+            return
+        end
+        if !self.optionalData[index] then
+            Debug(index.. " isnt valuable!")
+            return
+        end
+        return self.optionalData[index]
+    end
+
+    self.removeOptionalData = function(index)
+        if !index then
+            Debug("Index wasnt given!")
+            return
+        end
+        if !self.optionalData[index] then
+            Debug(index.. " isnt valuable!")
+            return
+        end
+        table.remove(self.optionalData, index)
+    end
+
+    self.getAllOptionalData = function (DoEncode)
+        if DoEncode then
+            return JSON.encode(self.optionalData)
+        end
+        return self.optionalData
     end
 
     self.setJob = function(job, grade)
