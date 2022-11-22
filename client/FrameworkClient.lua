@@ -21,6 +21,18 @@ FrameworkClient.showNotification = function(msg)
     DrawNotification(false, true)
 end
 
+FrameworkClient.showPictureNotification = function(icon, msg, title, subtitle)
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(msg)
+    SetNotificationMessage(icon, icon, true, 1, title, subtitle)
+    DrawNotification(false, true)
+end
+
+FrameworkClient.showHelpNotification = function(msg)
+    AddTextEntry("BRAINLUA", msg)
+    DisplayHelpTextThisFrame("BRAINLUA", false)
+end
+
 RegisterNetEvent("BrainLUA:PlayerLoaded")
 AddEventHandler("BrainLUA:PlayerLoaded", function(playerData)
     FrameworkClient.PlayerData = playerData
