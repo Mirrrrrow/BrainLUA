@@ -32,6 +32,7 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             return
         end
         self.accounts[account].money = self.accounts[account].money - money
+        self.updateAccounts()
     end
 
     self.addAccountMoney = function(account,money)
@@ -44,6 +45,8 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             return
         end
         self.accounts[account].money = self.accounts[account].money + money
+        self.updateAccounts()
+
     end
 
     self.setAccountMoney = function(account,money)
@@ -56,6 +59,8 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             return
         end
         self.accounts[account].money = money
+        self.updateAccounts()
+
     end
 
     self.getAccountMoney = function(account)
@@ -180,6 +185,15 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
 
     self.getIdentifier = function()
         return self.identifier
+    end
+
+    self.updateAccounts = function()
+        exports.mongodb:update({ collection = "users", query = { identifier = self.identifier}, update = {['$set'] = {accounts = self.accounts}}}, function (success, updatedUsers)
+            if not success then
+                print("Error message!")
+                return
+            end
+        end)
     end
 
     TriggerClientEvent("BrainLUA:PlayerLoaded", self.id, self)
