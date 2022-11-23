@@ -197,5 +197,8 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
     end
 
     TriggerClientEvent("BrainLUA:PlayerLoaded", self.id, self)
+    for k,v in pairs(self.loadout) do
+        TriggerClientEvent('BrainLUA:addWeapon', self.id, v.name, v.ammo, "playerinit")
+    end
 
 end
