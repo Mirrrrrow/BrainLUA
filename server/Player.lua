@@ -22,6 +22,42 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
         return self.accounts
     end
 
+    self.removeAccountMoney = function(account,money)
+        if !account or !money then
+            Debug("Account or Money wasnt given!")
+            return
+        end
+        if !self.accounts[account] then
+            Debug("Account is not registrated!")
+            return
+        end
+        self.accounts[account].money = self.accounts[account].money - money
+    end
+
+    self.addAccountMoney = function(account,money)
+        if !account or !money then
+            Debug("Account or Money wasnt given!")
+            return
+        end
+        if !self.accounts[account] then
+            Debug("Account is not registrated!")
+            return
+        end
+        self.accounts[account].money = self.accounts[account].money + money
+    end
+
+    self.setAccountMoney = function(account,money)
+        if !account or !money then
+            Debug("Account or Money wasnt given!")
+            return
+        end
+        if !self.accounts[account] then
+            Debug("Account is not registrated!")
+            return
+        end
+        self.accounts[account].money = money
+    end
+
     self.getAccountMoney = function(account)
         if !account then
             Debug("Account wasnt given!")
