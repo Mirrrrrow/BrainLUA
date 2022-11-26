@@ -151,6 +151,7 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             self.grade = grade
         end
         self.job = job
+        self.updateJob()
         TriggerClientEvent("BrainLUA:UpdateJob", self.id, self.job, self.grade)
     end
 
@@ -176,6 +177,7 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
             return
         end
         self.grade = grade
+        self.updateJob()
         TriggerClientEvent("BrainLUA:UpdateJob", self.id, self.job, self.grade)
     end
 
@@ -189,6 +191,15 @@ function LoadPlayer(playerName, playerCoords, playerIdentifier, playerId, rangle
 
     self.updateAccounts = function()
         exports.mongodb:update({ collection = "users", query = { identifier = self.identifier}, update = {['$set'] = {accounts = self.accounts}}}, function (success, updatedUsers)
+            if not success then
+                print("Error message!")
+                return
+            end
+        end)
+    end
+
+    self.updateJob = function()
+        exports.mongodb:update({ collection = "users", query = { identifier = self.identifier}, update = {['$set'] = {job = self.job. grade = self.grade}}}, function (success, updatedUsers)
             if not success then
                 print("Error message!")
                 return
