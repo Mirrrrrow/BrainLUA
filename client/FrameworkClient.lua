@@ -15,6 +15,24 @@ FrameworkClient.addBlip = function(position, sprite,size,colour,name)
     EndTextCommandSetBlipName(blip)
 end
 
+FrameworkClient.IsIplActive = function(iplName)
+    if not iplName then return end
+    return (IsIplActive(iplName))
+end
+
+FrameworkClient.LoadIpl = function(iplName)
+    if not iplName then return end
+    if IsIplActive(iplName) then return end
+    RequestIpl(iplName)
+end
+
+
+FrameworkClient.UnLoadIpl = function(iplName)
+    if not iplName then return end
+    if not IsIplActive(iplName) then return end
+    RemoveIpl(iplName)
+end
+
 FrameworkClient.showNotification = function(msg)
     SetNotificationTextEntry('STRING')
     AddTextComponentString(msg)
