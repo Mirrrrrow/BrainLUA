@@ -33,6 +33,20 @@ FrameworkClient.UnLoadIpl = function(iplName)
     RemoveIpl(iplName)
 end
 
+FrameworkClient.addNPC = function(position, heading,model)
+    if not position or not heading or not model then return end
+    RequestModel(GetHashKey(model))
+    while not HasModelLoaded(GetHashKey(model)) do
+      Wait(1)
+    end
+
+    ped =  CreatePed(4, GetHashKey(model),position.x,position.y,position.z, 3374176, false, true)
+    SetEntityHeading(ped, heading)
+    FreezeEntityPosition(ped, true)
+    SetEntityInvincible(ped, true)
+    SetBlockingOfNonTemporaryEvents(ped, true)
+end
+
 FrameworkClient.showNotification = function(msg)
     SetNotificationTextEntry('STRING')
     AddTextComponentString(msg)
